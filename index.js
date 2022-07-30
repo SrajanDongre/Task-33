@@ -4,9 +4,9 @@ const PORT = process.env.PORT||8000
 
 app.get('/',(req,res)=>{
 
-let http= require('http');
+
 const fs= require('fs');
-const server=http.createServer((req,res)=>{
+
 let date = new Date()
 
 fs.writeFile(',/current-date-Line.txt', `${date}`,(err)=>{
@@ -21,5 +21,5 @@ fs.readFile('./current-date-time.txt',(err,data)=>{
     res.end(data)
 })
 })
-})
+
 server.listen(PORT,()=>console.log('Server Listene to port'+PORT))
