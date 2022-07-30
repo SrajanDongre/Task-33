@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
             res.send({ errorMsg: "Error occurred" });
         }
         else {
-            res.send({ msg: "file created successfully" })
+            res.send({ msg: `file created successfully name & content as ${timeStamp.getTime()}` })
         }
     })
 });
