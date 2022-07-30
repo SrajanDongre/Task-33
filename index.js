@@ -1,25 +1,22 @@
 const express = require('express');
-const app =express();
-const PORT = process.env.PORT||8000
+const app = express();
+const PORT = process.env.PORT || 8000
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
 
 
-const fs= require('fs');
+    const fs = require('fs');
 
-let date = new Date()
+    let timeStamp = new Date();
+    fs.writeFile(`${timeStamp.getTime()}.txt`, timeStamp.getTime().toString(), "utf-8", (err) => {
+        if (err) {
+            console.log("Error in creating file ", err);
+            res.send({ errorMsg: "Error occurred" });
+        }
+        else {
+            res.send({ msg: "file created successfully" })
+        }
+    })
+});
 
-fs.writeFile(',/current-date-Line.txt', `${date}`,(err)=>{
-    if (err)
-    console.log(err)
-})
-
-fs.readFile('./current-date-time.txt',(err,data)=>{
-    if(err)
-    console.log(err)
-    res.writeHeaad(200,{'Content-Type':'text/html'});
-    res.end(data)
-})
-})
-
-server.listen(PORT,()=>console.log('Server Listene to port'+PORT))
+app.listen(PORT, () => console.log('Server Listene to port' + PORT));
